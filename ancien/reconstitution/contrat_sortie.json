@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Contrat de sortie de chaque passe IA, reconstitué le 28/10/2026 depuis les clés de ia_source_1 et ia_source_2 (identiques, 14 variables). Les vocabulaires ne figuraient pas dans l'ancienne chaîne (24 univers distincts dont des doublons d'accent). Les listes ci-dessous sont celles observées, à valider.",
+  "title": "structuration_designation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["designation_normalisee", "marque", "type_produit", "univers", "categorie", "confiance"],
+  "properties": {
+    "designation_normalisee": {"type": ["string", "null"]},
+    "marque": {"type": ["string", "null"]},
+    "gamme": {"type": ["string", "null"]},
+    "univers": {"enum": ["Alimentaire", "Bazar", "Hygiène", "Droguerie", "Textile", "Électroménager / Multimédia", "Autre", null]},
+    "categorie": {"type": ["string", "null"], "$comment": "100 catégories distinctes produites par l'IA, 173 après corrections"},
+    "type_produit": {"type": ["string", "null"]},
+    "variante": {"type": ["string", "null"]},
+    "caracteristique": {"type": ["string", "null"]},
+    "format": {"type": ["string", "null"], "$comment": "texte libre, ex. « 6 x 1,5 L »"},
+    "valeur": {"type": ["number", "null"], "$comment": "contenance d'une unité"},
+    "unite": {"enum": ["g", "kg", "ml", "cl", "l", "pcs", "sachets", "rouleaux", "piece", null]},
+    "contenance_ref": {"type": ["number", "null"], "$comment": "calculable sans IA: regles.contenance_ref(valeur, unite)"},
+    "nb_unites_lot": {"type": ["integer", "null"]},
+    "confiance": {"enum": ["haute", "moyenne", "basse", null]}
+  }
+}

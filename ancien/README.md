@@ -38,6 +38,6 @@ La page s'ouvre dans un navigateur, les photos de produits n'y apparaîtront plu
 - **Prix dans les liaisons**: hors périmètre tant que la surface publique n'est pas cadrée.
 - **React chargé par Babel dans le navigateur**: bon pour une maquette, pas pour la production.
 
-## 5. Ce qui manque encore
+## 5. Chaîne de traitement
 
-Le code de la chaîne réelle: lecture du fichier source, appels par lots (deux passes), arbitrage, application Streamlit. Sans lui, le coût par référence et le taux de correction ne se mesurent pas. S'il est introuvable, la logique se reconstitue depuis la base (instantanés des deux passes, origine retenue par variable, formule de libellé), mais pas les prompts.
+Le code de la chaîne réelle (appels par lots, deux passes, arbitrage, application Streamlit) est introuvable. Sa logique est reconstituée depuis la base dans [RECONSTITUTION.md](RECONSTITUTION.md) (28/10/2026). Les prompts d'origine sont perdus, un prompt reconstitué les remplace à titre d'hypothèse.

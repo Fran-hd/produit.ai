@@ -1,5 +1,5 @@
-.DS_Store
-.env
 *.csv
 *.xlsx
+.DS_Store
+.env
 __pycache__/

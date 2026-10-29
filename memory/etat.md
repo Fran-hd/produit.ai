@@ -17,13 +17,12 @@ Voir [AGENTS.md](../AGENTS.md). Essentielles: l'IA propose, Produit.ai ne décid
 | Dépôt | créé, structure posée, maquettes d'interface versées (`ancien/`) |
 | Base Supabase « Produit.ai » | 437 105 produits, sécurité corrigée (ADR-004), inactive depuis le 22/05/2026 |
 | Schéma canonique (ADR-002, décidé) | à écrire |
-| Ancien code (ADR-007) | maquettes reçues et inventoriées (`ancien/README.md`) ; chaîne de traitement (lots, Streamlit, prompts) toujours manquante |
+| Ancien code (ADR-007) | maquettes inventoriées, chaîne reconstituée depuis la base (`ancien/RECONSTITUTION.md`), prompts perdus |
 | Société Produit.ai (ADR-006) | à créer |
 
 ## En attente
 
-1. Code de la chaîne de traitement (lots, Streamlit, prompts), sinon reconstitution depuis la base.
-2. Création de la société Produit.ai.
+1. Création de la société Produit.ai.
 
 ## Suite proposée
 
