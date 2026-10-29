@@ -1,0 +1,185 @@
+// Mock data for the PIM food retail enrichment interface
+
+const PRODUCTS = [
+  {
+    id: "art_8412",
+    ean: "3017620422003",
+    name: "Nutella pâte à tartiner",
+    brand: "Ferrero",
+    format: "750 g",
+    category: "Épicerie sucrée › Pâtes à tartiner",
+    completeness: 92,
+    status: "validated",
+    images: 4,
+    updated: "il y a 2h",
+    owner: "M. Lefèvre",
+  },
+  {
+    id: "art_8413",
+    ean: "3228857000852",
+    name: "Baguette tradition française",
+    brand: "Harrys",
+    format: "250 g",
+    category: "Boulangerie › Pains",
+    completeness: 64,
+    status: "in_review",
+    images: 2,
+    updated: "il y a 30 min",
+    owner: "C. Dubois",
+  },
+  {
+    id: "art_8414",
+    ean: "3175680011480",
+    name: "Eau minérale plate",
+    brand: "Cristaline",
+    format: "6 × 1,5 L",
+    category: "Boissons › Eaux",
+    completeness: 100,
+    status: "validated",
+    images: 5,
+    updated: "hier",
+    owner: "M. Lefèvre",
+  },
+  {
+    id: "art_8415",
+    ean: "3560070976478",
+    name: "Filet de poulet fermier",
+    brand: "Loué",
+    format: "2 × 120 g",
+    category: "Volaille › Découpes",
+    completeness: 38,
+    status: "draft",
+    images: 1,
+    updated: "il y a 5 min",
+    owner: "—",
+  },
+  {
+    id: "art_8416",
+    ean: "8001505005707",
+    name: "Pâtes spaghetti n°5",
+    brand: "Barilla",
+    format: "500 g",
+    category: "Épicerie › Pâtes sèches",
+    completeness: 88,
+    status: "validated",
+    images: 3,
+    updated: "il y a 3j",
+    owner: "C. Dubois",
+  },
+  {
+    id: "art_8417",
+    ean: "3245412000133",
+    name: "Yaourt nature au lait entier",
+    brand: "La Laitière",
+    format: "4 × 125 g",
+    category: "Frais › Yaourts",
+    completeness: 71,
+    status: "in_review",
+    images: 2,
+    updated: "il y a 1h",
+    owner: "S. Martin",
+  },
+  {
+    id: "art_8418",
+    ean: "3017760123457",
+    name: "Café en grains arabica",
+    brand: "Carte Noire",
+    format: "1 kg",
+    category: "Épicerie › Cafés",
+    completeness: 22,
+    status: "draft",
+    images: 0,
+    updated: "il y a 12 min",
+    owner: "—",
+  },
+  {
+    id: "art_8419",
+    ean: "3596710443215",
+    name: "Saumon fumé Atlantique",
+    brand: "Labeyrie",
+    format: "4 tranches · 120 g",
+    category: "Frais › Saumon",
+    completeness: 81,
+    status: "in_review",
+    images: 3,
+    updated: "il y a 4h",
+    owner: "S. Martin",
+  },
+];
+
+const NOMENCLATURE = [
+  { id: "n1", label: "Épicerie sucrée", count: 1284, children: [
+    { id: "n1.1", label: "Pâtes à tartiner", count: 47, current: true },
+    { id: "n1.2", label: "Biscuits & gâteaux", count: 312 },
+    { id: "n1.3", label: "Confitures & miels", count: 189 },
+    { id: "n1.4", label: "Céréales petit-déj", count: 156 },
+  ]},
+  { id: "n2", label: "Épicerie salée", count: 2103 },
+  { id: "n3", label: "Frais", count: 3421 },
+  { id: "n4", label: "Boissons", count: 892 },
+  { id: "n5", label: "Surgelés", count: 514 },
+];
+
+const LINKS = {
+  substitute: [
+    { ean: "8000500310427", name: "Pâte à tartiner Pan di Stelle", brand: "Mulino Bianco", strength: 0.92, image: "🍫" },
+    { ean: "5410126731002", name: "Choco Hazelnut Spread", brand: "Lotus", strength: 0.78, image: "🥜" },
+    { ean: "3017620429484", name: "Nutella B-Ready", brand: "Ferrero", strength: 0.65, image: "🍪" },
+  ],
+  complementary: [
+    { ean: "3228857000852", name: "Baguette tradition", brand: "Harrys", strength: 0.88, image: "🥖" },
+    { ean: "7622210449283", name: "Biscottes au froment", brand: "LU", strength: 0.74, image: "🍞" },
+    { ean: "3608580788317", name: "Brioche tranchée", brand: "Pasquier", strength: 0.71, image: "🥐" },
+  ],
+  variant: [
+    { ean: "3017620422027", name: "Nutella pâte à tartiner", brand: "Ferrero", strength: 1.0, format: "400 g", image: "🍫" },
+    { ean: "3017620422010", name: "Nutella pâte à tartiner", brand: "Ferrero", strength: 1.0, format: "1 kg", image: "🍫" },
+    { ean: "3017620429392", name: "Nutella B-ready", brand: "Ferrero", strength: 0.55, format: "6 × 22 g", image: "🍫" },
+  ],
+  accessory: [
+    { ean: "3045320001211", name: "Couteau à tartiner inox", brand: "Tefal", strength: 0.42, image: "🔪" },
+  ],
+  upsell: [
+    { ean: "8001505321357", name: "Nutella Cioccolato Fondente", brand: "Ferrero", strength: 0.81, image: "🍫" },
+  ],
+};
+
+const ATTRIBUTES = {
+  general: [
+    { key: "EAN", value: "3017620422003", locked: true },
+    { key: "GTIN-14", value: "13017620422000" },
+    { key: "Référence interne", value: "ART-08412-FR" },
+    { key: "Marque", value: "Ferrero" },
+    { key: "Sous-marque", value: "Nutella" },
+    { key: "Pays d'origine", value: "Italie" },
+  ],
+  logistics: [
+    { key: "Poids brut", value: "812 g" },
+    { key: "Poids net", value: "750 g" },
+    { key: "Dimensions (L×l×h)", value: "9,5 × 9,5 × 11 cm" },
+    { key: "PCB / colis", value: "15" },
+    { key: "Palette (couches × PCB)", value: "12 × 15" },
+    { key: "DLUO", value: "12 mois" },
+  ],
+  nutrition: [
+    { key: "Énergie (kcal/100g)", value: "539" },
+    { key: "Matières grasses", value: "30,9 g" },
+    { key: "dont saturés", value: "10,6 g" },
+    { key: "Glucides", value: "57,5 g" },
+    { key: "dont sucres", value: "56,3 g" },
+    { key: "Protéines", value: "6,3 g" },
+    { key: "Sel", value: "0,107 g" },
+  ],
+  allergens: [
+    { key: "Lait", present: true },
+    { key: "Fruits à coque (noisettes)", present: true },
+    { key: "Soja", present: true },
+    { key: "Gluten", present: false },
+    { key: "Œuf", present: false },
+  ],
+};
+
+window.PRODUCTS = PRODUCTS;
+window.NOMENCLATURE = NOMENCLATURE;
+window.LINKS = LINKS;
+window.ATTRIBUTES = ATTRIBUTES;

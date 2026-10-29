@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Produit.ai — Enrichissement données articles</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #f0eee9; font-family: 'Inter', system-ui, sans-serif; }
+  #root { height: 100%; }
+  * { box-sizing: border-box; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+  // Map EAN → local product photo path. Used by ProductThumb in D6 (and other surfaces).
+  window.__PRODUCT_PHOTOS__ = {
+    "3270190022001": "photos/3270190022001.webp",
+    "3270190022018": "photos/3270190022018.webp",
+    "3245391105047": "photos/3245391105047.webp",
+    "3245391105054": "photos/3245391105054.jpeg",
+    "3270570012345": "photos/3270570012345.jpg",
+    "3596710443998": "photos/3596710443998.png",
+    "3175680011480": "photos/3175680011480.jpg",
+    "3596710443215": "photos/3596710443215.jpg",
+    "3596710443222": "photos/3596710443222.png",
+  };
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="data.jsx"></script>
+<script type="text/babel" src="icons.jsx"></script>
+<script type="text/babel" src="variation-a-shell.jsx"></script>
+<script type="text/babel" src="variation-a-detail.jsx"></script>
+<script type="text/babel" src="variation-a-list.jsx"></script>
+<script type="text/babel" src="variation-b.jsx"></script>
+<script type="text/babel" src="variation-c.jsx"></script>
+<script type="text/babel" src="variation-b-restyled.jsx"></script>
+<script type="text/babel" src="variation-d-label-builder.jsx"></script>
+<script type="text/babel" src="variation-d2-inbox-ai.jsx"></script>
+<script type="text/babel" src="variation-d3-pattern-groups.jsx"></script>
+<script type="text/babel" src="variation-d4-diff-review.jsx"></script>
+<script type="text/babel" src="variation-d5-spreadsheet.jsx"></script>
+<script type="text/babel" src="variation-d6-spreadsheet-ai.jsx"></script>
+<script type="text/babel" src="contractures-data.jsx"></script>
+<script type="text/babel" src="variation-d7-builder.jsx"></script>
+<script type="text/babel" src="variation-e-contractures.jsx"></script>
+
+<script type="text/babel" src="brands-data.jsx"></script>
+<script type="text/babel" src="brands-v1-split.jsx"></script>
+<script type="text/babel" src="brands-v2-gallery.jsx"></script>
+<script type="text/babel" src="brands-v3-table.jsx"></script>
+<script type="text/babel" src="brands-v4-groups.jsx"></script>
+
+<script type="text/babel" src="links-data.jsx"></script>
+<script type="text/babel" src="variation-f1-clusters.jsx"></script>
+<script type="text/babel" src="variation-f2-inbox.jsx"></script>
+<script type="text/babel" src="variation-f3-graph.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+function App() {
+  return (
+    <DesignCanvas>
+      <DCSection id="overview" title="Enrichissement & structuration — directions d'exploration"
+        subtitle="Directions à comparer pour le flux d'enrichissement (saisie EAN, fiche, tableur, IA, libellés). Chaque artboard est un écran complet à taille réelle (1440×900). Cliquez ↗ pour ouvrir en plein écran.">
+
+        <DCArtboard id="b-restyled" label="B+ · Fiche article — Style tableur pro (B restylé en C)" width={1440} height={1600}>
+          <ProductDetailBC />
+        </DCArtboard>
+
+        <DCArtboard id="d-label-builder" label="D · Éditeur de structure de libellés — feuille dédiée" width={1440} height={900}>
+          <LabelBuilderD />
+        </DCArtboard>
+
+        <DCArtboard id="d2-inbox-ai" label="D2 · Inbox AI — File de structuration triée par confiance (J/K/Y/N)" width={1440} height={900}>
+          <LabelInboxAI />
+        </DCArtboard>
+
+        <DCArtboard id="d3-pattern-groups" label="D3 · Pattern groups — Validation par cluster (1 décision = N libellés)" width={1440} height={900}>
+          <PatternGroupsD3 />
+        </DCArtboard>
+
+        <DCArtboard id="d4-diff-review" label="D4 · Diff review — Avant/après en batch signing" width={1440} height={900}>
+          <DiffReviewD4 />
+        </DCArtboard>
+
+        <DCArtboard id="d5-spreadsheet" label="D5 · Spreadsheet ultra-dense — 60+ lignes, auto-fill par colonne" width={1440} height={900}>
+          <SpreadsheetD5 />
+        </DCArtboard>
+
+        <DCArtboard id="d6-spreadsheet-ai" label="D6 · Spreadsheet IA — Suggestions inline + panneau détaillé (mix D2+D5)" width={1440} height={900}>
+          <SpreadsheetAID6 />
+        </DCArtboard>
+
+        <DCArtboard id="d7-builder" label="D7 · Constructeur de libellé — drag & drop + preview avant/après" width={1440} height={900}>
+          <LabelBuilderD7 />
+        </DCArtboard>
+
+        <DCArtboard id="e-contractures" label="E · Dictionnaire de contractures — gestion complète" width={1440} height={900}>
+          <ContracturesE />
+        </DCArtboard>
+
+        <DCArtboard id="c-grid" label="C · Vue grille tableur — Édition en masse, import/export" width={1440} height={900}>
+          <ProductGridC />
+        </DCArtboard>
+
+      </DCSection>
+
+      <DCSection id="brands" title="Gestion des marques · Référentiel Marque + Groupe Actionnaire"
+        subtitle="4 directions pour gérer le référentiel marques (typologie PP/MN/MDD/MPP/ML/EXC, groupe actionnaire, pays, logo). Mêmes principes IA que D6 — confiance par champ, validation Y/N, signalement des champs manquants. Chaque artboard explore un format différent.">
+
+        <DCArtboard id="brands-v1" label="V1 · Split list + panneau détail (style D6 aéré)" width={1440} height={900}>
+          <BrandsV1 />
+        </DCArtboard>
+
+        <DCArtboard id="brands-v2" label="V2 · Galerie de cartes-logos avec filtres latéraux" width={1440} height={900}>
+          <BrandsV2 />
+        </DCArtboard>
+
+        <DCArtboard id="brands-v3" label="V3 · Tableau enrichi full-width — actions en masse, sélection multi" width={1440} height={900}>
+          <BrandsV3 />
+        </DCArtboard>
+
+        <DCArtboard id="brands-v4" label="V4 · Vue par groupe actionnaire — mosaïque hiérarchique" width={1440} height={900}>
+          <BrandsV4 />
+        </DCArtboard>
+
+      </DCSection>
+
+      <DCSection id="links" title="Liaisons entre articles · Doublons, équivalents, variantes, substituts"
+        subtitle="3 directions pour gérer les 8 types de liaisons entre fiches : doublons à fusionner, équivalents MDD/MN, variantes de format, versions successives, substituts en rupture, cross-sell, packs ↔ unités. Chaque artboard explore un format différent — file de revue, vue par cluster, graphe d'écosystème.">
+
+        <DCArtboard id="f1-clusters" label="F1 · Liste de clusters — Split list + détail (style C dense)" width={1440} height={900}>
+          <LinksF1 />
+        </DCArtboard>
+
+        <DCArtboard id="f2-inbox" label="F2 · Inbox IA — File de revue, raccourcis Y/N/J/K/S/U" width={1440} height={900}>
+          <LinksF2 />
+        </DCArtboard>
+
+        <DCArtboard id="f3-graph" label="F3 · Graphe écosystème — Radial centré sur un produit pivot" width={1440} height={900}>
+          <LinksF3 />
+        </DCArtboard>
+
+      </DCSection>
+
+      <DCPostIt x={40} y={40} w={260}>
+        <strong>Parti-pris</strong><br/>
+        Inter + JetBrains Mono + Fraunces (B). Accent olive oklch(0.55 0.12 130) — discret rappel alimentaire.<br/><br/>
+        Trois directions pour explorer le même flux : édition de fiche, liens produits, gestion en masse.
+      </DCPostIt>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
