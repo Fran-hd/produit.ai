@@ -16,14 +16,14 @@ Voir [AGENTS.md](../AGENTS.md). Essentielles: l'IA propose, Produit.ai ne décid
 |---|---|
 | Dépôt | créé, structure posée, aucun code |
 | Base Supabase « Produit.ai » | 437 105 produits, sécurité corrigée (ADR-004), inactive depuis le 22/05/2026 |
-| Schéma canonique (ADR-002) | proposé, à écrire |
-| Code de l'ancienne application | non versé |
+| Schéma canonique (ADR-002, décidé) | à écrire |
+| Code de l'ancienne application (ADR-007) | à verser par l'utilisateur dans `ancien/`, puis inventaire |
+| Société Produit.ai (ADR-006) | à créer |
 
 ## En attente
 
-1. Entité juridique qui porte Produit.ai (société Xports, autre société, holding).
-2. Verser le code de l'ancienne application, s'il doit être repris.
-3. Valider ADR-002 et ADR-003.
+1. Code de l'ancienne application à verser.
+2. Création de la société Produit.ai.
 
 ## Suite proposée
 

@@ -7,10 +7,12 @@ Gabarit: décision, pourquoi (coût complet, fiabilité, performance, sécurité
 | N° | Objet | Statut | Date |
 |---|---|---|---|
 | ADR-001 | Frontière avec Xports et sens de la dépendance | décision de l'utilisateur | 28/10/2026 |
-| ADR-002 | Schéma canonique neuf, l'existant chargé comme une source | proposée | 28/10/2026 |
-| ADR-003 | Monolithe modulaire sur Postgres | proposée | 28/10/2026 |
+| ADR-002 | Schéma canonique neuf, l'existant chargé comme une source | décision de l'utilisateur | 28/10/2026 |
+| ADR-003 | Monolithe modulaire sur Postgres | décision de l'utilisateur | 28/10/2026 |
 | ADR-004 | Sécurité de la base existante | décision de l'utilisateur, appliquée | 28/10/2026 |
 | ADR-005 | Données de la base existante | décision de l'utilisateur | 28/10/2026 |
+| ADR-006 | Une société Produit.ai à créer, Xports client par contrat | décision de l'utilisateur | 28/10/2026 |
+| ADR-007 | Reprise du code de l'ancienne application après inventaire | décision de l'utilisateur | 28/10/2026 |
 
 ---
 
@@ -24,7 +26,7 @@ Gabarit: décision, pourquoi (coût complet, fiabilité, performance, sécurité
 
 **Ce qui l'invaliderait.** Un coût ou une latence d'appel incompatibles avec le traitement d'un dossier Xports.
 
-## ADR-002 — Schéma canonique neuf *(proposée, 28/10/2026)*
+## ADR-002 — Schéma canonique neuf *(proposée le 28/10/2026, décision de l'utilisateur « Oui, schéma neuf » à 21h05 heure de Martinique)*
 
 **Décision.** Repartir d'un schéma minimal: `tenant`, `source`, `product`, `trade_item` (unité commerciale et son GTIN), `packaging_level` (carton, palette), `identifier` (GTIN, référence client, référence fournisseur, chacun daté et pouvant être faux), `attribute_observation` (valeur, unité, méthode, confiance, statut, date, droits), `evidence` (document, extrait, emplacement), `classification` (nomenclature, version, territoire, période, origine de la décision). Les 437 105 produits existants entrent comme une source datée, valeurs d'origine et deux passes IA conservées. Rapprochement à sorties multiples (identique, variante, conditionnement différent, similaire, distinct, ambigu, inconnu), fusion réversible, aucune fusion automatique sous un seuil fixé avant la mesure.
 
@@ -34,7 +36,7 @@ Gabarit: décision, pourquoi (coût complet, fiabilité, performance, sécurité
 
 **Ce qui l'invaliderait.** Un besoin limité durablement au catalogue de grande consommation à un seul niveau de conditionnement.
 
-## ADR-003 — Monolithe modulaire sur Postgres *(proposée, 28/10/2026)*
+## ADR-003 — Monolithe modulaire sur Postgres *(proposée le 28/10/2026, décision de l'utilisateur « Oui » à 21h05 heure de Martinique)*
 
 **Décision.** Un service, des modules (Registry, Identity, Attributes, Evidence, Import, Search, Trust, API), Postgres et Supabase, workers à part pour les traitements longs. Recherche plein texte d'abord, `pgvector` seulement si un banc montre que le lexical ne suffit pas, base graphe seulement après banc de requêtes réelles.
 
@@ -61,3 +63,21 @@ Gabarit: décision, pourquoi (coût complet, fiabilité, performance, sécurité
 **Conséquence.** Aucun blocage de droits sur leur réutilisation. Leur provenance (fournisseur d'origine, date d'acquisition) reste à inscrire dans la fiche de la source, pour qu'une donnée publiée puisse toujours être retracée.
 
 **Ce qui l'invaliderait.** Des conditions d'acquisition restreignant la redistribution publique.
+
+## ADR-006 — Entité *(décision de l'utilisateur, 28/10/2026, 21h05 heure de Martinique)*
+
+**Décision.** Produit.ai sera porté par une société Produit.ai à créer, distincte de la société Xports. Elle détiendra le code, la base, le domaine `produit.ai` et la marque. Xports en sera client par contrat (accès à l'API, niveau de service, prix, sort des données à la fin du contrat).
+
+**Pourquoi.** Cohérent avec ADR-001: Produit.ai vendable seul, Xports remplaçable comme consommateur, chaque société avec son propre actif.
+
+**Conséquences.** Tant que la société n'existe pas, le code, la base et le domaine restent à l'utilisateur, à apporter à la société à sa création. Le contrat Xports ↔ Produit.ai porte aussi le cloisonnement des données des transitaires équipés par Xports.
+
+**Ce qui l'invaliderait.** Un montage juridique ou fiscal plus simple proposé par la juriste ou l'expert-comptable.
+
+## ADR-007 — Ancien code *(décision de l'utilisateur, 28/10/2026, 21h05 heure de Martinique)*
+
+**Décision.** L'utilisateur verse le code de l'ancienne application (normalisation par lots, revue Streamlit). Il est inventorié avant toute reprise: prompts et leurs versions, coût par référence, taux de correction, dette, secrets éventuels. Il est rangé dans `ancien/`, en lecture, et rien n'en passe dans le nouveau code sans test.
+
+**Pourquoi.** Les deux passes IA conservées et l'arbitrage par attribut sont des acquis. Le coût par référence ne peut être mesuré qu'à partir du code et de ses journaux.
+
+**Ce qui l'invaliderait.** Un code trop couplé à la table plate pour être repris utilement.
